@@ -61,41 +61,62 @@ int Wchar_int(wchar_t* s)
 	}
 	return k;
 }
+wchar_t * TachTen(wchar_t*S)
+{
+	int k = 0;
+	wchar_t d[10];
+	d[k++] = S[0];
+	for (int i = 1; i < Wlen(S)-1; i++)
+	{
+		if (S[i] == L' '&&S[i + 1] != L' ') d[k++] = S[i + 1];
+	}
+	d[k] = L'\0';
+	for (int i = 0; i < k; i++)
+	{
+		if (L'A' <= d[i] && d[i] <= L'Z') d[i] = d[i] + 32;
+	}
+	wchar_t*s = new wchar_t[k];
+	wcscpy(s, d);
+	s[k] = '\0';
+	return s;
+}
 void Thong_tin_SV(SinhVien &SV, FILE* FP)
 {
 	int post = 0;
-	wchar_t username[1000];
+	wchar_t Thong_tin[1000];
 	wchar_t *s;
-	fgetws(username, 1000, FP);
-	TOKen(username, SV.MSSV, post);
-	TOKen(username, SV.HoTen, post);
-	TOKen(username, SV.Khoa, post);
-	TOKen(username, s, post);
+	fgetws(Thong_tin, 1000, FP);
+	TOKen(Thong_tin, SV.MSSV, post);
+	TOKen(Thong_tin, SV.HoTen, post);
+	TOKen(Thong_tin, SV.Khoa, post);
+	TOKen(Thong_tin, s, post);
 	SV.Khoa1 = Wchar_int(s);
-	TOKen(username, SV.NgaySinh, post);
-	TOKen(username, SV.HinhAnh, post);
-	TOKen(username, SV.MoTa, post);
+	TOKen(Thong_tin, SV.NgaySinh, post);
+	TOKen(Thong_tin, SV.HinhAnh, post);
+	TOKen(Thong_tin, SV.MoTa, post);
 	int i = 0;
-	while (post < Wlen(username))
+	while (post < Wlen(Thong_tin))
 	{
-		TOKen(username, SV.Sothich.ST[i++], post);
+		TOKen(Thong_tin, SV.Sothich.ST[i++], post);
 	}
 	SV.Sothich.n = i;
 }
-void Xuat_thongTin(SinhVien SV)
-{
-	wchar_t* khoa;
-	fputws(SV.MSSV, stdout);
-	fputws(SV.HoTen, stdout);
-	fputws(SV.Khoa, stdout);
-	fputws(SV.NgaySinh, stdout);
-	fputws(SV.HinhAnh, stdout);
-	fputws(SV.MoTa, stdout);
-	for (int i = 0; i < SV.Sothich.n; i++)
-	{
-		fputws(SV.Sothich.ST[i], stdout);
-	}
-}
+
+//void Xuat_thongTin(SinhVien SV)
+//{
+//	wchar_t* khoa;
+//	fputws(SV.MSSV, stdout); fwprintf(stdout, L"   ");
+//	fputws(SV.HoTen, stdout); fwprintf(stdout, L"   ");
+//	fputws(SV.Khoa, stdout); fwprintf(stdout, L"   ");
+//	fputws(SV.NgaySinh, stdout); fwprintf(stdout, L"   ");
+//	fputws(SV.HinhAnh, stdout); fwprintf(stdout, L"   ");
+//	fputws(SV.MoTa, stdout); fwprintf(stdout, L"   ");
+//	for (int i = 0; i < SV.Sothich.n; i++)
+//	{
+//		fputws(SV.Sothich.ST[i], stdout); fwprintf(stdout, L"   ");
+//	}
+//	fwprintf(stdout, L"\n");
+//}
 wchar_t* TenHTML(wchar_t* s)
 {
 	wchar_t* S1;
@@ -111,8 +132,8 @@ wchar_t* TenHTML(wchar_t* s)
 	return S1;
 }
 int main() {
-	_setmode(_fileno(stdout), _O_U16TEXT); //needed for output
-	_setmode(_fileno(stdin), _O_U16TEXT); //needed for input
+	_setmode(_fileno(stdout), _O_U16TEXT); 
+	_setmode(_fileno(stdin), _O_U16TEXT);
 	FILE* fin = _wfopen(L"dca.csv", L"r, ccs=UTF-8");
 	if (fin == NULL) wprintf(L"\nChương trình kết thúc.\n");
 	else
@@ -121,7 +142,6 @@ int main() {
 		{
 			SinhVien sv;
 			Thong_tin_SV(sv, fin);
-			Xuat_thongTin(sv);
 			FILE* fin2 = _wfopen(TenHTML(sv.MSSV), L"w, ccs=UTF-8");
 			if (fin2 == NULL) wprintf(L"không mở đươc file");
 			else
@@ -132,8 +152,8 @@ int main() {
 				fwprintf(fin2, L"\t\t\t<!-- Begin Layout Banner Region -->\n\t\t\t<div class=\"Layout_Banner\" >\n\t\t\t\t<div><img id=\"logo\" src=\"Images/logo.jpg\" height=\"105\" /></div>\n");
 				fwprintf(fin2, L"\t\t\t\t<div class=\"Header_Title\">TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN </div>\n\t\t\t</div>\n\t\t\t<!-- End Layout Banner Region -->\n\t\t\t<!-- Begin Layout MainContents Region -->\n\t\t\t<div class=\"Layout_MainContents\">\n");
 				fwprintf(fin2, L"\t\t\t\t<!-- Begin Below Banner Region -->\n\t\t\t\t<div class=\"Personal_Main_Information\">\n\t\t\t\t\t<div class=\"Personal_Location\">\n");
-				fwprintf(fin2, L"\t\t\t\t\t\t<img src=\"Images/LogoFooter.jpg\" width=\"27\" height=\"33\" />\n\t\t\t\t\t\t<span class=\"Personal_FullName\">%s - %d</span>\n", sv.HoTen, sv.MSSV);
-				fwprintf(fin2, L"\t\t\t\t\t\t<div class=\"Personal_Department\">%s</div>\n\t\t\t\t\t\t<br />\n\t\t\t\t\t\t<div class=\"Personal_Phone\">\n\t\t\t\t\t\t\tEmail: nva@gmail.com\n", sv.Khoa);
+				fwprintf(fin2, L"\t\t\t\t\t\t<img src=\"Images/LogoFooter.jpg\" width=\"27\" height=\"33\" />\n\t\t\t\t\t\t<span class=\"Personal_FullName\">%s - %s</span>\n", sv.HoTen, sv.MSSV);
+				fwprintf(fin2, L"\t\t\t\t\t\t<div class=\"Personal_Department\">%s</div>\n\t\t\t\t\t\t<br />\n\t\t\t\t\t\t<div class=\"Personal_Phone\">\n\t\t\t\t\t\t\tEmail: %s@gmail.com\n", sv.Khoa,TachTen(sv.HoTen));
 				fwprintf(fin2, L"\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<br />\n\t\t\t\t\t\t<br />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"Personal_HinhcanhanKhung\">\n\t\t\t\t\t\t<img src=\"Images/%s\" class=\"Personal_Hinhcanhan\" />\n", sv.HinhAnh);
 				fwprintf(fin2, L"\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<!-- End Below Banner Region -->\n\t\t\t\t<!-- Begin MainContents Region -->\n\t\t\t\t<div class=\"MainContain\">\n\n\t\t\t\t\t<!-- Begin Top Region -->\n\t\t\t\t\t<div class=\"MainContain_Top\">\n\n");
 				fwprintf(fin2, L"\t\t\t\t\t\t<div class=\"InfoGroup\">Thông tin cá nhân</div>\n\t\t\t\t<div>\n\t\t\t\t\t<ul class=\"TextInList\">\n\t\t\t\t\t\t<li>Họ và tên: %s</li>\n", sv.HoTen);
@@ -149,11 +169,12 @@ int main() {
 				fwprintf(fin2, L"\t\t\tKỹ thuật lập trình</br>\n\t\t\tTH2018/03</br>\n\t\t\t1712901 - Trần Chí Vĩ </br>\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t<!-- End Layout Footer -->\n\t\t</div>\n\t</body>\n</html>");
 				fclose(fin2);
 			}
-			fclose(fin2);
-			wprintf(L"\nChương trình kết thúc ooo.\n");
+			//delete[] sv.HoTen;
+			//GiaiPhong(sv);
 		}
 		fclose(fin);
 	}
+	wprintf(L"\nChương trình kết thúc.\n");
 	_getch();
 	return 0;
-}s
+}

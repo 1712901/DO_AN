@@ -147,30 +147,28 @@ int main() {
 			else
 			{
 				fwprintf(fin2, L"<!DOCTYPE html PUBLIC \" -//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd \" >\n");
-				fwprintf(fin2, L"<html xmlns=\"http://www.w3.org/1999/xhtml \">\n\t<head>\n\t\t<meta http-equiv=\"Content - Type\" content=\"text/html; charset = utf - 8\" />\n");
-				fwprintf(fin2, L"\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"personal.css\" />\n\t\t<title>HCMUS - %s</title>\n\t</head>\n\t<body>\n\t\t<div class=\"Layout_container\">\n", sv.HoTen);
-				fwprintf(fin2, L"\t\t\t<!-- Begin Layout Banner Region -->\n\t\t\t<div class=\"Layout_Banner\" >\n\t\t\t\t<div><img id=\"logo\" src=\"Images/logo.jpg\" height=\"105\" /></div>\n");
-				fwprintf(fin2, L"\t\t\t\t<div class=\"Header_Title\">TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN </div>\n\t\t\t</div>\n\t\t\t<!-- End Layout Banner Region -->\n\t\t\t<!-- Begin Layout MainContents Region -->\n\t\t\t<div class=\"Layout_MainContents\">\n");
-				fwprintf(fin2, L"\t\t\t\t<!-- Begin Below Banner Region -->\n\t\t\t\t<div class=\"Personal_Main_Information\">\n\t\t\t\t\t<div class=\"Personal_Location\">\n");
-				fwprintf(fin2, L"\t\t\t\t\t\t<img src=\"Images/LogoFooter.jpg\" width=\"27\" height=\"33\" />\n\t\t\t\t\t\t<span class=\"Personal_FullName\">%s - %s</span>\n", sv.HoTen, sv.MSSV);
-				fwprintf(fin2, L"\t\t\t\t\t\t<div class=\"Personal_Department\">%s</div>\n\t\t\t\t\t\t<br />\n\t\t\t\t\t\t<div class=\"Personal_Phone\">\n\t\t\t\t\t\t\tEmail: %s@gmail.com\n", sv.Khoa,TachTen(sv.HoTen));
-				fwprintf(fin2, L"\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<br />\n\t\t\t\t\t\t<br />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"Personal_HinhcanhanKhung\">\n\t\t\t\t\t\t<img src=\"Images/%s\" class=\"Personal_Hinhcanhan\" />\n", sv.HinhAnh);
-				fwprintf(fin2, L"\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<!-- End Below Banner Region -->\n\t\t\t\t<!-- Begin MainContents Region -->\n\t\t\t\t<div class=\"MainContain\">\n\n\t\t\t\t\t<!-- Begin Top Region -->\n\t\t\t\t\t<div class=\"MainContain_Top\">\n\n");
-				fwprintf(fin2, L"\t\t\t\t\t\t<div class=\"InfoGroup\">Thông tin cá nhân</div>\n\t\t\t\t<div>\n\t\t\t\t\t<ul class=\"TextInList\">\n\t\t\t\t\t\t<li>Họ và tên: %s</li>\n", sv.HoTen);
-				fwprintf(fin2, L"\t\t\t\t\t\t\t\t<li>MSSV: %s</li>\n\t\t\t\t\t\t\t\t<li>Sinh viên khoa %s</li>\n\t\t\t\t\t\t\t\t<li>Ngày sinh: %s</li>\n\t\t\t\t\t\t\t\t<li>Email: nva@gmail.com</li>\n\t\t\t\t\t\t\t</ul>\n", sv.MSSV, sv.Khoa, sv.NgaySinh);
-				fwprintf(fin2, L"\t\t\t\t\t\t</div>\n\t\t\t\t<div class=\"InfoGroup\">Sở thích</div>\n\t\t\t\t<div>\n\t\t\t\t\t<ul class=\"TextInList\">");
+				fwprintf(fin2, L"<html xmlns=\"http://www.w3.org/1999/xhtml \">\n<head>\n<meta http-equiv=\"Content - Type\" content=\"text/html; charset = utf - 8\" />\n");
+				fwprintf(fin2, L"<link rel=\"stylesheet\" type=\"text/css\" href=\"personal.css\" />\n<title>HCMUS - %s</title>\n</head>\n<body>\n<div class=\"Layout_container\">\n", sv.HoTen);
+				fwprintf(fin2, L"<!-- Begin Layout Banner Region -->\n<div class=\"Layout_Banner\" >\n<div><img id=\"logo\" src=\"Images/logo.jpg\" height=\"105\" /></div>\n");
+				fwprintf(fin2, L"<div class=\"Header_Title\">TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN </div>\n</div>\n<!-- End Layout Banner Region -->\n<!-- Begin Layout MainContents Region -->\n<div class=\"Layout_MainContents\">\n");
+				fwprintf(fin2, L"<!-- Begin Below Banner Region -->\n<div class=\"Personal_Main_Information\">\n<div class=\"Personal_Location\">\n");
+				fwprintf(fin2, L"<img src=\"Images/LogoFooter.jpg\" width=\"27\" height=\"33\" />\n<span class=\"Personal_FullName\">%s - %s</span>\n", sv.HoTen, sv.MSSV);
+				fwprintf(fin2, L"<div class=\"Personal_Department\">%s</div>\n<br />\n<div class=\"Personal_Phone\">\nEmail: %s@gmail.com\n", sv.Khoa,TachTen(sv.HoTen));
+				fwprintf(fin2, L"</div>\n<br />\n<br />\n</div>\n<div class=\"Personal_HinhcanhanKhung\">\n<img src=\"Images/%s\" class=\"Personal_Hinhcanhan\" />\n", sv.HinhAnh);
+				fwprintf(fin2, L"</div>\n</div>\n<!-- End Below Banner Region -->\n<!-- Begin MainContents Region -->\n<div class=\"MainContain\">\n\n<!-- Begin Top Region -->\n<div class=\"MainContain_Top\">\n\n");
+				fwprintf(fin2, L"<div class=\"InfoGroup\">Thông tin cá nhân</div>\n<div>\n<ul class=\"TextInList\">\n<li>Họ và tên: %s</li>\n", sv.HoTen);
+				fwprintf(fin2, L"<li>MSSV: %s</li>\n<li>Sinh viên khoa %s</li>\n<li>Ngày sinh: %s</li>\n<li>Email: %s@gmail.com</li>\n</ul>\n", sv.MSSV, sv.Khoa, sv.NgaySinh, TachTen(sv.HoTen));
+				fwprintf(fin2, L"</div>\n<div class=\"InfoGroup\">Sở thích</div>\n<div>\n<ul class=\"TextInList\">");
 				for (int i = 0; i < sv.Sothich.n; i++)
 				{
 					fwprintf(fin2, L"<li>%s", sv.Sothich.ST[i]);
 				}
 				fwprintf(fin2, L"</ul>");
-				fwprintf(fin2, L"\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"InfoGroup\">Mô tả</div>\n\t\t\t\t\t\t<div class=\"Description\">\n\t\t\t\t\t%s.\n\t\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t<d/iv>\n\n\t\t<!-- Begin Layout Footer -->\n", sv.MoTa);
-				fwprintf(fin2, L"\t\t\t<!-- Begin Layout Footer -->\n\t\t\t<div class=\"Layout_Footer\">\n\t\t\t\t<div class=\"divCopyright\">\n\t\t\t\t\t<br />\n\t\t\t\t\t<img src=\"Images/LogoFooter_gray.jpg\" width=\"34\" height=\"41\" /><br />\n\t\t\t\t\t<br />\n\t\t\t\t\t@2013</br>\n\t\t\tĐồ án giữ kỳ</br>\n");
-				fwprintf(fin2, L"\t\t\tKỹ thuật lập trình</br>\n\t\t\tTH2018/03</br>\n\t\t\t1712901 - Trần Chí Vĩ </br>\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t<!-- End Layout Footer -->\n\t\t</div>\n\t</body>\n</html>");
+				fwprintf(fin2, L"</div>\n<div class=\"InfoGroup\">Mô tả</div>\n<div class=\"Description\">\n<li>%s.\n\t\t\t\t\t\t</div>\n\n</div>\n</div>\n<d/iv>\n\n<!-- Begin Layout Footer -->\n", sv.MoTa);
+				fwprintf(fin2, L"<!-- Begin Layout Footer -->\n<div class=\"Layout_Footer\">\n<div class=\"divCopyright\">\n<br />\n<img src=\"Images/LogoFooter_gray.jpg\" width=\"34\" height=\"41\" /><br />\n<br />\n@2013</br>\ntĐồ án giữ kỳ</br>\n");
+				fwprintf(fin2, L"Kỹ thuật lập trình</br>\nTH2018/03</br>\n1712901 - Trần Chí Vĩ </br>\n</div>\n</div>\n<!-- End Layout Footer -->\n</div>\n</body>\n</html>");
 				fclose(fin2);
 			}
-			//delete[] sv.HoTen;
-			//GiaiPhong(sv);
 		}
 		fclose(fin);
 	}

@@ -158,14 +158,17 @@ int main() {
 				fwprintf(fin2, L"</div>\n</div>\n<!-- End Below Banner Region -->\n<!-- Begin MainContents Region -->\n<div class=\"MainContain\">\n\n<!-- Begin Top Region -->\n<div class=\"MainContain_Top\">\n\n");
 				fwprintf(fin2, L"<div class=\"InfoGroup\">Thông tin cá nhân</div>\n<div>\n<ul class=\"TextInList\">\n<li>Họ và tên: %s</li>\n", sv.HoTen);
 				fwprintf(fin2, L"<li>MSSV: %s</li>\n<li>Sinh viên khoa %s</li>\n<li>Ngày sinh: %s</li>\n<li>Email: %s@gmail.com</li>\n</ul>\n", sv.MSSV, sv.Khoa, sv.NgaySinh, TachTen(sv.HoTen));
-				fwprintf(fin2, L"</div>\n<div class=\"InfoGroup\">Sở thích</div>\n<div>\n<ul class=\"TextInList\">");
-				for (int i = 0; i < sv.Sothich.n; i++)
+				if (sv.Sothich.n > 0)
 				{
-					fwprintf(fin2, L"<li>%s", sv.Sothich.ST[i]);
+					fwprintf(fin2, L"</div>\n<div class=\"InfoGroup\">Sở thích</div>\n<div>\n<ul class=\"TextInList\">");
+					for (int i = 0; i < sv.Sothich.n; i++)
+					{
+						fwprintf(fin2, L"<li> %s</li>\n", sv.Sothich.ST[i]);
+					}
 				}
 				fwprintf(fin2, L"</ul>");
 				fwprintf(fin2, L"</div>\n<div class=\"InfoGroup\">Mô tả</div>\n<div class=\"Description\">\n<li>%s.\n\t\t\t\t\t\t</div>\n\n</div>\n</div>\n<d/iv>\n\n<!-- Begin Layout Footer -->\n", sv.MoTa);
-				fwprintf(fin2, L"<!-- Begin Layout Footer -->\n<div class=\"Layout_Footer\">\n<div class=\"divCopyright\">\n<br />\n<img src=\"Images/LogoFooter_gray.jpg\" width=\"34\" height=\"41\" /><br />\n<br />\n@2013</br>\ntĐồ án giữ kỳ</br>\n");
+				fwprintf(fin2, L"<!-- Begin Layout Footer -->\n<div class=\"Layout_Footer\">\n<div class=\"divCopyright\">\n<br />\n<img src=\"Images/LogoFooter_gray.jpg\" width=\"34\" height=\"41\" /><br />\n<br />\n@2013</br>\nĐồ án giữ kỳ</br>\n");
 				fwprintf(fin2, L"Kỹ thuật lập trình</br>\nTH2018/03</br>\n1712901 - Trần Chí Vĩ </br>\n</div>\n</div>\n<!-- End Layout Footer -->\n</div>\n</body>\n</html>");
 				fclose(fin2);
 			}
